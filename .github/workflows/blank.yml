@@ -25,9 +25,6 @@ jobs:
           cache: true
           name: namadac
       
-      - name: Run a one-line script
-        run: namadac
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
