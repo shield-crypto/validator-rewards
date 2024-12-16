@@ -22,6 +22,8 @@ jobs:
       - uses: sigoden/install-binary@v1
         with:
           repo: 'anoma/namada'
+          cache: true
+          name: namadac
       
       - name: Run a one-line script
         run: namadac
