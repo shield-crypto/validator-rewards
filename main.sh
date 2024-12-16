@@ -2,7 +2,13 @@
 
 echo Running bash script in github
 
+source env.sh 
+env
+
 namada --version
+
+echo "Joining Namada Network"
+namadac utils join-network --chain-id $CHAIN_ID
 
 echo "fetching the validator balance"
 
