@@ -2,7 +2,7 @@
 
 echo Running bash script in github
 
-source env.sh 
+./env.sh 
 env
 
 namada --version
