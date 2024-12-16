@@ -19,11 +19,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - uses: supplypike/setup-bin@v4
+      - uses: sigoden/install-binary@v1
         with:
-          uri: 'https://github.com/anoma/namada/releases/download/v1.0.0/namada-v1.0.0-Linux-x86_64.tar.gz'
-          name: 'namadac'
-          version: '1.0.0'
+          repo: 'anoma/namada'
       
       - name: Run a one-line script
         run: namadac
