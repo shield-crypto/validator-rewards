@@ -21,7 +21,7 @@ COMMISSION_RATE=$(echo $DETAILS | jq -r .commission.commission_rate)
 
 METRIC_FILE=metrics/index.html
 echo "HELP shield_commission_rate Commission Rate for the validator\n" > $METRIC_FILE
-echo "TYPE shield_commission_rate gauge\" >> $METRIC_FILE
+echo "TYPE shield_commission_rate gauge\n" >> $METRIC_FILE
 echo "shield_commission_rate $COMMISSION_RATE \n" >> $METRIC_FILE
 
 echo "HELP shield_stake Stake on the validator \n" >> $METRIC_FILE
