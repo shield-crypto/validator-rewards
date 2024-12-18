@@ -24,7 +24,14 @@ COMMISSION_RATE=$(echo $DETAILS | jq -r .commission.commission_rate)
 METRIC_FILE=metrics/metrics.txt
 
 start_time=$(date +%s)
-echo $start_time > metrics/last_run.txt
+last_run=$(curl -s https://shield-crypto.github.io/validator-rewards/last_run.txt)
+elapsed=$((start_time - $last_run))
+fraction_year=$(echo "scale=8;$elapsed / 31536000"  | bc)
+
+
+
+
+#echo $start_time > metrics/last_run.txt
 
 echo "HELP shield_validator_commission_rate Commission Rate for the validator" > $METRIC_FILE
 echo "TYPE shield_validator_commission_rate gauge" >> $METRIC_FILE
@@ -47,4 +54,11 @@ echo "shield_delegators_rewards $rewards_delegators" >> $METRIC_FILE
 
 rewards_percentage_delegators=$(echo "scale=2; $rewards_delegators / $STAKE" | bc)
 
+# APR = (1 + rewards_percentage_delegators)^(1/fraction_year)-1
 
+#APR=$(echo "scale=8;(1+$rewards_percentage_delegators)^(1/$fraction_year)-1" | bc)
+#echo $start_time > metrics/last_run.txt
+
+echo "HELP shield_delegators_apy APY generated for delegators by the validator" >> $METRIC_FILE
+echo "TYPE shield_delegators_apyv gauge" >> $METRIC_FILE
+echo "shield_delegators_apy 20" >> $METRIC_FILE
