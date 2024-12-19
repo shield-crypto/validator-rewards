@@ -33,7 +33,7 @@ start_time=$(date +%s)
 
 last_run=$(curl -s https://shield-crypto.github.io/validator-rewards/last_run.txt)
 elapsed=$((start_time - $last_run))
-total_elapsed=$((start_tivime - $TOTAL_START_TIME))
+total_elapsed=$((start_time - $TOTAL_START_TIME))
 
 fraction_year=$(echo "scale=8;$elapsed / 31536000"  | bc)
 total_fraction_year=$(echo "scale=8;$total_elapsed / 31536000"  | bc)
