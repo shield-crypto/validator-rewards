@@ -15,7 +15,8 @@ echo "fetching the validator commission"
 COMMISSION=$(curl -s https://api.namada.valopers.com/account/$VALIDATOR_ADDRESS/commission | jq -r .amount)
 
 DETAILS=$(curl -s https://api.namada.valopers.com/validators/details/$VALIDATOR_ADDRESS)
-STAKE=$(echo $DETAILS | jq -r .stake)
+STAKEM=$(echo $DETAILS | jq -r .stake)
+STAKE=$(echo "scale=2;$STAKEM / 1000000" | bc)
 COMMISSION_RATE=$(echo $DETAILS | jq -r .commission.commission_rate)
 
 METRIC_FILE=metrics/metrics.txt
@@ -50,7 +51,7 @@ echo "# TYPE shield_delegators_rewards gauge" >> $METRIC_FILE
 echo "shield_delegators_rewards $rewards_delegators" >> $METRIC_FILE
 
 
-rewards_percentage_delegators=$(echo "scale=2; $rewards_delegators / $STAKE" | bc)
+rewards_percentage_delegators=$(echo "scale=10; $rewards_delegators / $STAKE" | bc)
 
 echo "# HELP shield_delegators_rewards_percentage Percentage of rewards vs staked amount on the validator" >> $METRIC_FILE
 echo "# TYPE shield_delegators_rewards_percentage gauge" >> $METRIC_FILE
