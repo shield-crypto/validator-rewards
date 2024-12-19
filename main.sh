@@ -26,6 +26,10 @@ last_run=$(curl -s https://shield-crypto.github.io/validator-rewards/last_run.tx
 elapsed=$((start_time - $last_run))
 fraction_year=$(echo "scale=8;$elapsed / 31536000"  | bc)
 
+echo "# HELP shield_time_period Fraction of the year represented by this calculation " >> $METRIC_FILE
+echo "# TYPE shield_time_period gauge" >> $METRIC_FILE
+echo "shield_time_period $fraction_year" >> $METRIC_FILE
+
 
 echo "# HELP shield_validator_commission_rate Commission Rate for the validator" > $METRIC_FILE
 echo "# TYPE shield_validator_commission_rate gauge" >> $METRIC_FILE
@@ -47,6 +51,10 @@ echo "shield_delegators_rewards $rewards_delegators" >> $METRIC_FILE
 
 
 rewards_percentage_delegators=$(echo "scale=2; $rewards_delegators / $STAKE" | bc)
+
+echo "# HELP shield_delegators_rewards_percentage Percentage of rewards vs staked amount on the validator" >> $METRIC_FILE
+echo "# TYPE shield_delegators_rewards_percentage gauge" >> $METRIC_FILE
+echo "shield_delegators_rewards_percentage $rewards_percentage_delegators" >> $METRIC_FILE
 
 # APR = (1 + rewards_percentage_delegators)^(1/fraction_year)-1
 
