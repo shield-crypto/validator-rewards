@@ -27,12 +27,12 @@ last_run=$(curl -s https://shield-crypto.github.io/validator-rewards/last_run.tx
 elapsed=$((start_time - $last_run))
 fraction_year=$(echo "scale=8;$elapsed / 31536000"  | bc)
 
-echo "# HELP shield_time_period Fraction of the year represented by this calculation " >> $METRIC_FILE
+echo "# HELP shield_time_period Fraction of the year represented by this calculation " > $METRIC_FILE
 echo "# TYPE shield_time_period gauge" >> $METRIC_FILE
 echo "shield_time_period $fraction_year" >> $METRIC_FILE
 
 
-echo "# HELP shield_validator_commission_rate Commission Rate for the validator" > $METRIC_FILE
+echo "# HELP shield_validator_commission_rate Commission Rate for the validator" >> $METRIC_FILE
 echo "# TYPE shield_validator_commission_rate gauge" >> $METRIC_FILE
 echo "shield_validator_commission_rate $COMMISSION_RATE" >> $METRIC_FILE
 
