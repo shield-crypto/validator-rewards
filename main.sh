@@ -81,7 +81,9 @@ echo "shield_delegators_rewards_last $last_rewards_delegators" >> $METRIC_FILE
 
 delegator_rewards_delta=$(echo "scale=4; $rewards_delegators -  $last_rewards_delegators" | bc)
 
-
+echo "# HELP shield_delegators_rewards_last_epoch rewards distributed to delegators in the last epoch " >> $METRIC_FILE
+echo "# TYPE shield_delegators_rewards_last_epoch gauge" >> $METRIC_FILE
+echo "shield_delegators_rewards_last_epoch $delegator_rewards_delta" >> $METRIC_FILE
 
 rewards_percentage_delegatorsnf=$(echo "scale=10; $rewards_delegators / $STAKE" | bc)
 rewards_percentage_delegators=$(printf "%.10f" "$rewards_percentage_delegatorsnf")
