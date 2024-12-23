@@ -119,6 +119,8 @@ echo "# HELP shield_delegators_apy APY generated for delegators by the validator
 echo "# TYPE shield_delegators_apyv gauge" >> $METRIC_FILE
 echo "shield_delegators_apy $APY" >> $METRIC_FILE
 
+echo $APY > metrics/last_delegator_apy.txt
+
 echo "# HELP shield_delegators_apy_total Average APY generated for delegators by the validator since validator genesis" >> $METRIC_FILE
 echo "# TYPE shield_delegators_apy_total gauge" >> $METRIC_FILE
 echo "shield_delegators_apy_total $TOTAL_APY" >> $METRIC_FILE
