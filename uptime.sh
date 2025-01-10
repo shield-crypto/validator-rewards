@@ -4,7 +4,7 @@
 
 
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S %Z"`
-UPTIME_FILE=status/uptime_status.txt
+UPTIME_FILE=metrics/uptime_status.txt
 
 echo checking Validator status at $TIMESTAMP > $UPTIME_FILE
 
