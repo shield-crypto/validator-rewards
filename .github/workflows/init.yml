@@ -2,8 +2,9 @@
 name: Initialize the pages
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+
+  #push:
+  #  branches: ["main"]
 
 
   workflow_dispatch:
