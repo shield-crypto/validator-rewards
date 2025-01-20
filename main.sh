@@ -20,7 +20,7 @@ echo "fetching the validator commission"
 COMMISSION=$(curl -s https://api.namada.valopers.com/account/$VALIDATOR_ADDRESS/commission | jq -r .amount)
 
 TOTAL_COMMISSION=$(echo "scale=6;$COMMISSION + $CLAIMED" | bc)
-TOTAL_COMMISSION_RATE=0.05
+TOTAL_COMMISSION_RATE=0.07
 
 DETAILS=$(curl -s https://api.namada.valopers.com/validators/details/$VALIDATOR_ADDRESS)
 STAKEM=$(echo $DETAILS | jq -r .stake)
