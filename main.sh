@@ -11,7 +11,7 @@ echo Running bash script in github
 export VALIDATOR_ADDRESS=tnam1qyvc8n7ufmpan4yy3nemm3td2c6uff4m6s72g3eg
 
 # Update it when commission are claimed by the validator
-CLAIMED=750
+CLAIMED=962.81
 TOTAL_STAKE_AVERAGE=1168629
 #16.12.2024 23.00
 TOTAL_START_TIME=1734390000
